@@ -3,7 +3,7 @@ pipeline {
     environment {
         USERID = 'demo'
         USERGITHUB = 'peerapach'
-        PROJECTID = 'fluids-analogy-26'
+        PROJECTID = 'fluid-analogy-267415'
         CLUSTERNAME = 'cluster-1'
         CLUSTERLOCATION = 'asia-southeast1-c'
         CREDENTIALS_ID = 'gke'
