@@ -38,7 +38,19 @@
 </table>
 </div>
 </div>
-<div class="card green">
+<table class="bordered">
+	<tbody>
+		<p>POD details:</p>
+	{% for pod in pods %}
+	<tr>
+		<td>{{pod.metadata.name}}</td>
+		<td>{{pod.status.pod_ip}}</td>
+		<td>{{pod.status.phase}}</td>
+	</tr>
+	{% endfor %}
+	</tbody>
+</table>
+<!-- <div class="card green">
 <div class="card-content white-text">
 <div class="card-title">Proxy that handled this request</div>
 </div>
@@ -61,7 +73,7 @@
 </table>
 </div>
 </div>
-</div>
+</div> -->
 <div class="col s2">&nbsp;</div>
 </div>
 </div>

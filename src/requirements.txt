@@ -4,3 +4,4 @@ eventlet
 flask-script
 coverage
 flask_testing
+kubernetes

@@ -1,8 +1,10 @@
 pipeline {
     agent any
     environment {
+        // แก้ไขเป็นของผู่เรียน
         USERID = 'user39'
         USERGITHUB = 'ezylinux'
+        // ไม่ต้องแก้ไข
         CREDENTIALS_ID = 'gke'
         PROJECTID='fluid-analogy-267415'
         CLUSTERNAME='cluster-1'
