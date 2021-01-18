@@ -58,20 +58,21 @@ pipeline {
                     RESP = sh(script: "curl --write-out %{http_code} --silent -m 5 --output /dev/null ${USERID}-green.workshop.ezylinux.com",
                                        returnStdout: true).trim()
                     println(RESP)
+                    sh "[ -d "deployment" ] && mkdir -p deployment"
                     if (RESP == "200") {
                         sh """
-                            cp -f deployment/blue-green/deployment-blue.yaml deployment/deployment.yaml
-                            cp -f deployment/blue-green/deployment-green.yaml deployment/deployment-scale-down.yaml
-                            cp -f deployment/blue-green/ingress-blue-testing.yaml deployment/ingress-testing.yaml
-                            cp -f deployment/blue-green/ingress-blue.yaml deployment/ingress.yaml
+                            cp -f CD-Workshop/blue-green/deployment-blue.yaml deployment/deployment.yaml
+                            cp -f CD-Workshop/blue-green/deployment-green.yaml deployment/deployment-scale-down.yaml
+                            cp -f CD-Workshop/blue-green/ingress-blue-testing.yaml deployment/ingress-testing.yaml
+                            cp -f CD-Workshop/blue-green/ingress-blue.yaml deployment/ingress.yaml
                         """
                         deploySide = "blue"
                     } else {
                        sh """
-                            cp -f deployment/blue-green/deployment-green.yaml deployment/deployment.yaml
-                            cp -f deployment/blue-green/deployment-blue.yaml deployment/deployment-scale-down.yaml
-                            cp -f deployment/blue-green/ingress-green-testing.yaml deployment/ingress-testing.yaml
-                            cp -f deployment/blue-green/ingress-green.yaml deployment/ingress.yaml
+                            cp -f CD-Workshop/blue-green/deployment-green.yaml deployment/deployment.yaml
+                            cp -f CD-Workshop/blue-green/deployment-blue.yaml deployment/deployment-scale-down.yaml
+                            cp -f CD-Workshop/blue-green/ingress-green-testing.yaml deployment/ingress-testing.yaml
+                            cp -f CD-Workshop/blue-green/ingress-green.yaml deployment/ingress.yaml
                         """
                         deploySide = "green"                            
                         

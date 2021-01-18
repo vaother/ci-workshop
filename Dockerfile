@@ -6,7 +6,7 @@ ENV PROJECTID USERID
 WORKDIR /app
 
 # Install dependencies defined in 'requirements.txt'
-COPY requirements.txt /tmp/requirements.txt
+COPY src/requirements.txt /tmp/requirements.txt
 RUN pip install -r /tmp/requirements.txt
 
 # Copy app's source code to the /app directory

@@ -50,9 +50,9 @@ pipeline {
         stage('Deploy to GKE') {
             steps{
                 sh """
-                    sed -i 's/#USER#/${USERID}/g' deployment/deployment.yaml
-                    sed -i 's/#APPUSER#/${USERID}-hello:${env.BUILD_ID}/g' deployment/deployment.yaml
-                    sed -i 's/#DOCKER-HUB-USERNAME#/cicdday/g' deployment/deployment.yaml
+                    sed -i 's/#USER#/${USERID}/g' CD-Workshop/rolling-update/deployment.yaml
+                    sed -i 's/#APPUSER#/${USERID}-hello:${env.BUILD_ID}/g' CD-Workshop/rolling-update/deployment.yaml
+                    sed -i 's/#DOCKER-HUB-USERNAME#/cicdday/g' CD-Workshop/rolling-update/deployment.yaml
                 """
                 
                 step([$class: 'KubernetesEngineBuilder', 
@@ -60,7 +60,7 @@ pipeline {
                       namespace: env.USERID,
                       clusterName: env.CLUSTERNAME, 
                       location: env.CLUSTERLOCATION, 
-                      manifestPattern: 'deployment/deployment.yaml', 
+                      manifestPattern: 'CD-Workshop/rolling-update/deployment.yaml', 
                       credentialsId: env.CREDENTIALS_ID, 
                       verifyDeployments: true])
             }
