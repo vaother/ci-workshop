@@ -5,11 +5,12 @@ ENV PROJECTID USERID
 # The application's directory will be the working directory
 WORKDIR /app
 
+# Install dependencies defined in 'requirements.txt'
+COPY requirements.txt /tmp/requirements.txt
+RUN pip install -r /tmp/requirements.txt
+
 # Copy app's source code to the /app directory
 COPY src /app
-
-# Install Node.js dependencies defined in '/app/packages.json'
-RUN pip install -r requirements.txt
 
 EXPOSE 5000
 

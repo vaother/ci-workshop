@@ -19,9 +19,10 @@ pipeline {
         }
         stage("Unit test") {
             steps {
-                withDockerContainer("peerapach/python:3.6") {
+                withDockerContainer("python:3.6") {
                     sh """
                         cd src
+                        pip install -r requirements.txt
                         python -m unittest
                     """
                 }
