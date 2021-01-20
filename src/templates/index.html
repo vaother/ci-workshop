@@ -49,6 +49,7 @@
 		<td>Terminating</td>
 		{% else %}
 		<td>{{pod.status.phase}}</td>
+		{% endif %}
 	</tr>
 	{% endfor %}
 	</tbody>
