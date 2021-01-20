@@ -4,11 +4,6 @@ pipeline {
         // แก้ไขเป็นของผู่เรียน
         USERID = 'demo'
         USERGITHUB = 'peerapach'
-        // ไม่ต้องแก้ไข
-        PROJECTID = 'fluid-analogy-267415'
-        CLUSTERNAME = 'cluster-1'
-        CLUSTERLOCATION = 'asia-southeast1-c'
-        CREDENTIALS_ID = 'gke'
     }
     stages {
         stage("Checkout code") {

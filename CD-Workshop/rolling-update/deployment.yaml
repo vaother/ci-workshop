@@ -32,7 +32,7 @@ spec:
             path: /alive
             port: 5000
           initialDelaySeconds: 10
-          periodSeconds: 30            
+          periodSeconds: 10            
         livenessProbe:
           httpGet:
             path: /alive
