@@ -23,8 +23,9 @@ pipeline {
             steps {
                 withDockerContainer("python:3.6") {
                     sh """
+                        export PYTHONUSERBASE=/tmp
                         cd src
-                        pip install -r requirements.txt
+                        pip install --no-cache-dir -r requirements.txt
                         python -m unittest
                     """
                 }
@@ -35,6 +36,7 @@ pipeline {
             steps {
                 sh """
                     sed -i 's/USERID/${USERID}/g' Dockerfile
+                    sed -i 's/K8S_API_SERVER/${K8S_API_SERVER}/g' Dockerfile
                 """
                 script {
                     myapp = docker.build("cicdday/${USERID}-hello:${env.BUILD_ID}")
