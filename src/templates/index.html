@@ -45,7 +45,7 @@
 	<tr>
 		<td>{{pod.metadata.name}}</td>
 		<td>{{pod.status.pod_ip}}</td>
-		{% if pod.metadata.deletionTimestamp is not None and pod.status.phase == 'Running' %}
+		{% if pod.metadata.deletionTimestamp is not none and pod.status.phase == 'Running' %}
 		<td>Terminating</td>
 		{% else %}
 		<td>{{pod.status.phase}}</td>
