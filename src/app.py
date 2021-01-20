@@ -39,6 +39,9 @@ def getPods():
     with open('/run/secrets/kubernetes.io/serviceaccount/token', 'r') as file:
         aToken = file.read().replace('\n', '')
     
+    with open('/run/secrets/kubernetes.io/serviceaccount/namespace', 'r') as file:
+        aNamespace = file.read().replace('\n', '')
+
     aConfiguration = client.Configuration()
 
     # # Specify the endpoint of your Kube cluster
@@ -51,7 +54,7 @@ def getPods():
 
     v1 = client.CoreV1Api(aApiClient)
     #ret = v1.list_namespaced_pod("default",label_selector=label_selector)
-    ret = v1.list_namespaced_pod("default")
+    ret = v1.list_namespaced_pod(aNamespace)
     return ret.items
 
 if __name__ == "__main__":

@@ -4,7 +4,6 @@ pipeline {
         // แก้ไขเป็นของผู่เรียน
         USERID = 'demo'
         USERGITHUB = 'peerapach'
-        K8S_API_SERVER = ''
     }
     stages {
         stage("Checkout code") {
