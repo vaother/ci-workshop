@@ -2,8 +2,8 @@ pipeline {
     agent any
     environment {
         // แก้ไขเป็นของผู่เรียน
-        USERID = 'user39'
-        USERGITHUB = 'ezylinux'
+        USERID = 'pm000'
+        USERGITHUB = 'peerapach'
     }
     stages {
         stage("Checkout code") {
@@ -55,7 +55,10 @@ pipeline {
                     RESP = sh(script: "curl --write-out %{http_code} --silent -m 5 --output /dev/null ${USERID}-green.workshop.ezylinux.com",
                                        returnStdout: true).trim()
                     println(RESP)
-                    sh "[ -d "deployment" ] && mkdir -p deployment"
+                    sh """
+                        [ ! -d "deployment" ] && mkdir -p deployment
+                    """
+                    
                     if (RESP == "200") {
                         sh """
                             cp -f CD-Workshop/blue-green/deployment-blue.yaml deployment/deployment.yaml
@@ -118,7 +121,7 @@ pipeline {
                       location: env.CLUSTERLOCATION, 
                       manifestPattern: 'deployment/ingress.yaml', 
                       credentialsId: env.CREDENTIALS_ID, 
-                      verifyDeployments: false])                 
+                      verifyDeployments: true])                 
                       
                 step([$class: 'KubernetesEngineBuilder', 
                       projectId: env.PROJECTID, 
